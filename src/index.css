@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Shake animation for input validation alerts */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+}
+
+/* Custom Print Stylesheet
+   This ensures that when window.print() is called, only the receipt card 
+   marked with ID #print-area is printed. Backgrounds are forced to white 
+   and text to black to conserve ink.
+*/
+@media print {
+  /* Hide the entire viewport contents */
+  body * {
+    visibility: hidden;
+    background-color: transparent !important;
+  }
+
+  /* Expose only the target receipt document sheet */
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  /* Reset receipt alignment to fill the standard print sheet */
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Force print elements to black text for high contrast print output */
+  #print-area * {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  /* Hide print buttons or controls on receipt itself if any */
+  .no-print {
+    display: none !important;
+  }
+}
