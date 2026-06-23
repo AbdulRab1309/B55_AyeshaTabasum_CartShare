@@ -96,7 +96,7 @@ export default function Cart({
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Item Name */}
             <div>
-              <label htmlFor="itemName" className="mb-1.5 block text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <label htmlFor="itemName" className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">
                 Item Name *
               </label>
               <input
@@ -106,14 +106,14 @@ export default function Cart({
                 placeholder="e.g., Apple, Bread, Milk"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-850 dark:focus:border-blue-500"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-850 dark:text-slate-900 dark:focus:border-blue-500"
               />
             </div>
 
             {/* Quantity and Price */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor="quantity" className="mb-1.5 block text-xs font-semibold text-slate-500 dark:text-slate-400">
+                <label htmlFor="quantity" className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Qty *
                 </label>
                 <input
@@ -124,15 +124,15 @@ export default function Cart({
                   placeholder="1"
                   value={quantity}
                   onChange={(e) => handleQuantityChange(e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-850 dark:focus:border-blue-500"
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-850 dark:text-slate-900 dark:focus:border-blue-500"
                 />
               </div>
               <div>
-                <label htmlFor="price" className="mb-1.5 block text-xs font-semibold text-slate-500 dark:text-slate-400">
+                <label htmlFor="price" className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Price ($)
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-600 dark:text-slate-400">
                     $
                   </span>
                   <input
@@ -142,7 +142,7 @@ export default function Cart({
                     placeholder="0.00"
                     value={price}
                     onChange={(e) => handlePriceChange(e.target.value)}
-                    className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-7 pr-3.5 text-sm outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-850 dark:focus:border-blue-500"
+                    className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-7 pr-3.5 text-sm text-slate-900 outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-850 dark:text-slate-900 dark:focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -180,28 +180,28 @@ export default function Cart({
           {/* Total Cost Card */}
           <div className="flex flex-col justify-between rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 p-5 text-white shadow-lg shadow-blue-100 dark:shadow-none">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-blue-100">Estimated Total Cost</span>
-              <DollarSign className="h-6 w-6 text-blue-200" />
+              <span className="text-sm font-medium text-white">Estimated Total Cost</span>
+              <DollarSign className="h-6 w-6 text-white" />
             </div>
             <div>
               <p className="font-mono text-3xl font-bold tracking-tight sm:text-4xl">
                 ${totalCost.toFixed(2)}
               </p>
-              <p className="mt-1 text-xs text-blue-100">Calculated automatically</p>
+              <p className="mt-1 text-xs text-white">Calculated automatically</p>
             </div>
           </div>
 
           {/* Cart Status Card */}
           <div className="flex flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Items (Summed)</span>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">Total Items (Summed)</span>
               <ShoppingBag className="h-6 w-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
               <p className="text-3xl font-bold text-slate-800 dark:text-slate-100">
                 {totalItemsCount}
               </p>
-              <p className="mt-1 text-xs text-slate-400">
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
                 Across {items.length} unique items
               </p>
             </div>
@@ -226,7 +226,7 @@ export default function Cart({
                 placeholder="Search items..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full sm:w-60 rounded-xl border border-slate-200 bg-slate-50 py-2 pl-9 pr-4 text-xs outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-800 dark:focus:border-blue-500"
+                className="w-full sm:w-60 rounded-xl border border-slate-200 bg-slate-50 py-2 pl-9 pr-4 text-xs text-slate-900 outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-800 dark:bg-slate-800 dark:text-slate-900 dark:focus:border-blue-500"
               />
             </div>
 
@@ -273,7 +273,7 @@ export default function Cart({
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full border-collapse text-left">
                 <thead>
-                  <tr className="border-b border-slate-100 dark:border-slate-800 text-xs font-semibold uppercase text-slate-400">
+                  <tr className="border-b border-slate-100 dark:border-slate-800 text-xs font-semibold uppercase text-slate-600 dark:text-slate-400">
                     <th className="py-3 pr-4">Item Name</th>
                     <th className="py-3 px-4 text-center">Quantity</th>
                     <th className="py-3 px-4 text-right">Price</th>
@@ -291,27 +291,27 @@ export default function Cart({
                       <td className="py-4 px-4 text-center font-mono">
                         {item.quantity}
                       </td>
-                      <td className="py-4 px-4 text-right font-mono text-slate-600 dark:text-slate-400">
+                      <td className="py-4 px-4 text-right font-mono text-slate-700 dark:text-slate-300">
                         ${item.price.toFixed(2)}
                       </td>
                       <td className="py-4 px-4 text-right font-mono font-semibold text-slate-850 dark:text-slate-100">
                         ${(item.quantity * item.price).toFixed(2)}
                       </td>
-                      <td className="py-4 px-4 text-xs text-slate-500 dark:text-slate-400">
+                      <td className="py-4 px-4 text-xs text-slate-600 dark:text-slate-300">
                         {item.updatedBy || item.addedBy}
                       </td>
                       <td className="py-4 pl-4 text-right">
                         <div className="flex justify-end gap-2">
                           <button
                             onClick={() => startEdit(item)}
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-amber-500 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition-colors"
+                            className="rounded-lg p-1.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-amber-500 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition-colors"
                             title="Edit Item"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => onDeleteItem(item.id)}
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-800 dark:hover:text-red-400 transition-colors"
+                            className="rounded-lg p-1.5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-800 dark:hover:text-red-400 transition-colors"
                             title="Delete Item"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -334,20 +334,20 @@ export default function Cart({
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <h4 className="font-semibold text-slate-850 dark:text-slate-150">{item.name}</h4>
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
                         By {item.updatedBy || item.addedBy}
                       </p>
                     </div>
                     <div className="flex gap-1.5">
                       <button
                         onClick={() => startEdit(item)}
-                        className="rounded-lg bg-white p-2 text-slate-500 border border-slate-150 hover:text-amber-500 dark:bg-slate-850 dark:border-slate-850 dark:text-slate-400 transition-colors"
+                        className="rounded-lg bg-white p-2 text-slate-600 dark:text-slate-400 border border-slate-150 hover:text-amber-500 dark:bg-slate-850 dark:border-slate-850 transition-colors"
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => onDeleteItem(item.id)}
-                        className="rounded-lg bg-white p-2 text-slate-500 border border-slate-150 hover:text-red-500 dark:bg-slate-850 dark:border-slate-850 dark:text-slate-400 transition-colors"
+                        className="rounded-lg bg-white p-2 text-slate-600 dark:text-slate-400 border border-slate-150 hover:text-red-500 dark:bg-slate-850 dark:border-slate-850 transition-colors"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -356,17 +356,17 @@ export default function Cart({
                   
                   <div className="mt-3 grid grid-cols-3 gap-2 border-t border-slate-100/80 pt-3 text-xs dark:border-slate-850">
                     <div>
-                      <span className="block text-slate-400">Qty</span>
+                      <span className="block text-slate-600 dark:text-slate-400">Qty</span>
                       <span className="font-mono text-sm font-semibold">{item.quantity}</span>
                     </div>
                     <div>
-                      <span className="block text-slate-400">Price</span>
+                      <span className="block text-slate-600 dark:text-slate-400">Price</span>
                       <span className="font-mono text-sm font-semibold text-slate-650 dark:text-slate-350">
                         ${item.price.toFixed(2)}
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="block text-slate-400">Total</span>
+                      <span className="block text-slate-600 dark:text-slate-400">Total</span>
                       <span className="font-mono text-sm font-bold text-blue-600 dark:text-blue-400">
                         ${(item.quantity * item.price).toFixed(2)}
                       </span>

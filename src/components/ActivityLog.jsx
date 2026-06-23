@@ -77,7 +77,7 @@ export default function ActivityLog({ logs = [] }) {
       <div className="flex-1 overflow-y-auto max-h-[320px] pr-1 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800">
         {logs.length === 0 ? (
           <div className="flex h-32 flex-col items-center justify-center text-center text-slate-400">
-            <ScrollText className="mb-2 h-8 w-8 text-slate-200 dark:text-slate-800" />
+            <ScrollText className="mb-2 h-8 w-8 text-slate-400 dark:text-slate-600" />
             <p className="text-xs">No activity logged yet.</p>
           </div>
         ) : (
@@ -102,7 +102,7 @@ export default function ActivityLog({ logs = [] }) {
                         {log.itemName}
                       </span>
                     </div>
-                    <span className="text-[10px] text-slate-400 font-mono">
+                    <span className="text-[10px] text-slate-600 dark:text-slate-400 font-mono">
                       {formatTime(log.timestamp)}
                     </span>
                   </div>

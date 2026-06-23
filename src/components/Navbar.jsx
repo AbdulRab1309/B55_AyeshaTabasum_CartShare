@@ -29,14 +29,14 @@ export default function Navbar({ roomCode, username, isDarkMode, toggleDarkMode,
           </div>
           <div>
             <h1 className="font-bold text-xl tracking-tight text-blue-900 dark:text-blue-400">CartShare</h1>
-            <span className="text-xs text-slate-500 dark:text-slate-400">Collaborative Shopping</span>
+            <span className="text-xs text-slate-600 dark:text-slate-300">Collaborative Shopping</span>
           </div>
         </div>
 
         {/* Room Code Display & Copy (If inside a room) */}
         {roomCode && (
           <div className="flex items-center gap-1.5 rounded-lg bg-blue-50/80 px-3 py-1.5 text-sm font-medium text-blue-800 transition-colors dark:bg-slate-800 dark:text-blue-300">
-            <span className="text-slate-500 dark:text-slate-400">Room:</span>
+            <span className="text-slate-600 dark:text-slate-300">Room:</span>
             <span className="font-mono font-bold tracking-wider">{roomCode}</span>
             <button
               onClick={copyRoomCode}
@@ -57,7 +57,7 @@ export default function Navbar({ roomCode, username, isDarkMode, toggleDarkMode,
         <div className="flex items-center gap-3">
           {username && (
             <div className="hidden sm:flex flex-col items-end">
-              <span className="text-xs text-slate-400">Active User</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">Active User</span>
               <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{username}</span>
             </div>
           )}
