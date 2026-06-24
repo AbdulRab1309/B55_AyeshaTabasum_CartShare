@@ -8,7 +8,7 @@ import {
   clearCurrentUser,
   createRoomInStorage,
   getRoom
-} from './utils/storageUtils';
+} from './utils/backendStorageUtils';
 
 /**
  * Root Application Controller.
@@ -84,10 +84,10 @@ export default function App() {
   };
 
   // 3. Action: Create a Room
-  const handleCreateRoom = (username) => {
+  const handleCreateRoom = async (username) => {
     const code = generateRoomCode();
-    // Initialize room structure in localStorage
-    createRoomInStorage(code);
+    // Initialize room structure on the backend
+    await createRoomInStorage(code);
     
     // Save user session
     const session = { name: username, roomCode: code };
