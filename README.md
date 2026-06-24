@@ -6,7 +6,7 @@ This project uses **React**, **Vite**, **Tailwind CSS**, and a small **Express**
 
 ---
 
-## 🚀 Key Features
+Key Features
 
 1. **User Room Access**: Enter a username to create a new room or join an existing room using a 6-character code.
 2. **Backend Room Persistence**: Room state is saved to a backend API instead of only localStorage.
@@ -19,7 +19,7 @@ This project uses **React**, **Vite**, **Tailwind CSS**, and a small **Express**
 
 ---
 
-## 📂 Project Structure
+Project Structure
 
 ```text
 cartshare/
@@ -54,7 +54,7 @@ cartshare/
 
 ---
 
-## 🛠️ Installation and Running
+Installation and Running
 
 This project contains both frontend and backend components.
 
@@ -112,6 +112,7 @@ npm run build
 ---
 
 ## 🧠 How the App Works
+How It Works (Technical Explanations)
 
 ### Room persistence
 - `src/utils/backendStorageUtils.js` now communicates with the backend API.
@@ -132,6 +133,7 @@ npm run build
 ---
 
 ## 🎯 Notes
+Viva Q&A (Project Defence Prep)
 
 - This backend is intentionally minimal and file-based for easy local demo use.
 - It is suitable for local testing and demo purposes, not production.
