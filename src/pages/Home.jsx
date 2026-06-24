@@ -85,7 +85,7 @@ export default function Home({ onJoinRoom, onCreateRoom, presetRoomCode = '' }) 
           <div className="space-y-6">
             {/* Step 1: Enter Username (Universal) */}
             <div>
-              <label htmlFor="username" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400">
+              <label htmlFor="username" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
                 1. Your Username
               </label>
               <input
@@ -95,25 +95,25 @@ export default function Home({ onJoinRoom, onCreateRoom, presetRoomCode = '' }) 
                 placeholder="e.g., Ayesha, Rahul"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-850 dark:bg-slate-850 dark:text-white dark:focus:border-blue-500"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-black outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-850 dark:bg-slate-850 dark:text-black dark:focus:border-blue-500"
               />
             </div>
 
             {/* Selector between Create and Join */}
             <div className="border-t border-slate-100 dark:border-slate-850 pt-5">
-              <label className="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-400">
+              <label className="mb-3 block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
                 2. Select Session Action
               </label>
 
               {/* Mode Switcher Buttons */}
-              <div className="mb-5 grid grid-cols-2 gap-2 rounded-xl bg-slate-100/60 p-1 dark:bg-slate-850">
+              <div className="mb-5 grid grid-cols-2 gap-2 rounded-xl bg-slate-200 p-1 dark:bg-slate-800">
                 <button
                   type="button"
                   onClick={() => setIsJoining(false)}
                   className={`rounded-lg py-2 text-xs font-bold transition-all ${
                     !isJoining
                       ? 'bg-white text-blue-600 shadow-sm dark:bg-slate-900 dark:text-blue-400'
-                      : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'
+                      : 'text-slate-600 hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-100'
                   }`}
                 >
                   Create New Room
@@ -124,7 +124,7 @@ export default function Home({ onJoinRoom, onCreateRoom, presetRoomCode = '' }) 
                   className={`rounded-lg py-2 text-xs font-bold transition-all ${
                     isJoining
                       ? 'bg-white text-blue-600 shadow-sm dark:bg-slate-900 dark:text-blue-400'
-                      : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300'
+                      : 'text-slate-600 hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-100'
                   }`}
                 >
                   Join Room
@@ -143,7 +143,7 @@ export default function Home({ onJoinRoom, onCreateRoom, presetRoomCode = '' }) 
                     <span>Create Session Room</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
-                  <p className="mt-2.5 text-center text-[10px] text-slate-400">
+                  <p className="mt-2.5 text-center text-[10px] text-slate-600 dark:text-slate-400">
                     A unique 6-character code will be generated for your friends to join.
                   </p>
                 </form>
@@ -157,7 +157,7 @@ export default function Home({ onJoinRoom, onCreateRoom, presetRoomCode = '' }) 
                       placeholder="Enter 6-char Room Code (e.g. ABC123)"
                       value={roomCode}
                       onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-                      className="w-full text-center font-mono font-bold tracking-widest rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-850 dark:bg-slate-850 dark:text-white dark:focus:border-blue-500"
+                      className="w-full text-center font-mono font-bold tracking-widest rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-black outline-none transition-all focus:border-blue-500 focus:bg-white dark:border-slate-850 dark:bg-slate-850 dark:text-black dark:focus:border-blue-500"
                     />
                   </div>
                   <button

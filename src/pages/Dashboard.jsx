@@ -70,7 +70,7 @@ export default function Dashboard({ username, roomCode, onLeaveRoom, isDarkMode,
     return (
       <div className="flex h-[80vh] flex-col items-center justify-center gap-4 text-center">
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
-        <p className="text-slate-500">Loading collaborative room session...</p>
+        <p className="text-slate-700 dark:text-slate-300">Loading collaborative room session...</p>
       </div>
     );
   }

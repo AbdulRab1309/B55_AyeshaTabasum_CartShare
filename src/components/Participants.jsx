@@ -39,7 +39,7 @@ export default function Participants({ participants = [], currentUsername }) {
       </div>
 
       {participants.length === 0 ? (
-        <p className="text-sm text-slate-400">No participants found.</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400">No participants found.</p>
       ) : (
         <div className="flex flex-wrap gap-3">
           {participants.map((participant) => {
@@ -64,7 +64,7 @@ export default function Participants({ participants = [], currentUsername }) {
                   <span className="max-w-[100px] truncate text-sm font-semibold text-slate-700 dark:text-slate-200">
                     {participant.name}
                   </span>
-                  <span className="text-[10px] text-slate-400">
+                  <span className="text-[10px] text-slate-600 dark:text-slate-400">
                     {isMe ? 'You' : 'Member'}
                   </span>
                 </div>
