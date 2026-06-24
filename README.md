@@ -6,7 +6,7 @@ This project is built using **React (JavaScript / JSX)**, **HTML5**, **CSS3**, a
 
 ---
 
-## 🚀 Key Features
+Key Features
 
 1. **User Room Access**: Enter a username and instantly create a new room (generates a unique 6-character room code) or join an existing room.
 2. **Real-Time Tab Sync (Backendless Collaboration)**: Simulates real-time multiplayer updates using HTML5 `storage` events. Edits in one tab immediately synchronize to other open tabs running the same room.
@@ -19,7 +19,7 @@ This project is built using **React (JavaScript / JSX)**, **HTML5**, **CSS3**, a
 
 ---
 
-## 📂 Project Structure
+Project Structure
 
 ```text
 cartshare/
@@ -48,7 +48,7 @@ cartshare/
 
 ---
 
-## 🛠️ Installation and Running
+Installation and Running
 
 Follow these steps to run the application locally on your machine:
 
@@ -72,7 +72,7 @@ Follow these steps to run the application locally on your machine:
 
 ---
 
-## ⚙️ How It Works (Technical Explanations)
+How It Works (Technical Explanations)
 
 ### 1. Room Code Generation
 The unique room code is generated using basic JavaScript random math:
@@ -99,7 +99,7 @@ The receipt is formatted into a clean receipt card:
 
 ---
 
-## 🎓 Viva Q&A (Project Defence Prep)
+Viva Q&A (Project Defence Prep)
 
 **Q1: How does the application support real-time sync without a backend database?**  
 **A:** We use the HTML5 `storage` event. When a tab modifies a value in `localStorage`, all other tabs/windows on the same browser receive a `storage` event. We filter this event by the active room key, read the new serialized JSON value, and update the React state.
