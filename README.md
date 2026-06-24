@@ -1,21 +1,21 @@
 # CartShare - Collaborative Shopping Cart
 
-**CartShare** is a fully frontend, collaborative shopping cart application designed for modern web applications. It allows multiple users to join a shared room via a unique code and manage a shopping cart together. 
+**CartShare** is a React shopping cart collaboration app. It supports a frontend UI and a minimal Express backend for room persistence.
 
-This project is built using **React (JavaScript / JSX)**, **HTML5**, **CSS3**, and **Tailwind CSS**. It is designed to be a lightweight, simple, and self-contained frontend application, making it ideal for internship submissions, student project showcases, and vivas.
+This project uses **React**, **Vite**, **Tailwind CSS**, and a small **Express** backend storing room data in `server/db.json`.
 
 ---
 
 Key Features
 
-1. **User Room Access**: Enter a username and instantly create a new room (generates a unique 6-character room code) or join an existing room.
-2. **Real-Time Tab Sync (Backendless Collaboration)**: Simulates real-time multiplayer updates using HTML5 `storage` events. Edits in one tab immediately synchronize to other open tabs running the same room.
-3. **Dynamic Shared Cart**: Add items with custom names, quantities, and prices. Edit or delete items, and search through items instantly.
-4. **Live Activity Log**: Records and displays recent actions (e.g., *"Ayesha added Milk"*, *"Rahul updated quantity of Apples"*) with automatic timestamps.
-5. **Participant Avatars**: Dynamic user listing that represents participants using initial-based avatars with deterministic background colors.
-6. **Printable Receipts**: Generates a clean receipt invoice layout with print-optimized styles (`@media print`) and triggers the browser's PDF export/print dialog.
-7. **Dark Mode Toggle**: Toggle between crisp light and dark slate UI themes, persisted in localStorage.
-8. **Responsive Grid Design**: Responsive layout that scales from mobile phones to full desktop displays using Flexbox and Grid.
+1. **User Room Access**: Enter a username to create a new room or join an existing room using a 6-character code.
+2. **Backend Room Persistence**: Room state is saved to a backend API instead of only localStorage.
+3. **Shared Shopping Cart**: Add, edit, delete, and search items with quantity and price.
+4. **Live Activity Log**: Tracks user actions with timestamps.
+5. **Participant Avatars**: Displays user initials and deterministic color-coded avatars.
+6. **Printable Receipt**: Generates a print-ready receipt modal.
+7. **Dark Mode**: Theme preference persists across reloads.
+8. **Responsive Layout**: Works on mobile and desktop.
 
 ---
 
@@ -23,92 +23,132 @@ Project Structure
 
 ```text
 cartshare/
+├── server/
+│   ├── db.json            # JSON file used by the Express backend
+│   ├── index.js           # Express backend routes and persistence logic
+│   └── package.json       # Server dependencies and start script
 ├── src/
 │   ├── components/
-│   │   ├── Navbar.jsx        # Navigation, room code, theme toggler, and leave action
-│   │   ├── Cart.jsx          # Shopping list table, forms, search, and totals
-│   │   ├── ActivityLog.jsx   # Live chronological event timeline feed
-│   │   ├── Participants.jsx  # Active room participants with colorized initials avatars
-│   │   └── Receipt.jsx       # Printable modal overlay summary
+│   │   ├── ActivityLog.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── Participants.jsx
+│   │   └── Receipt.jsx
 │   ├── pages/
-│   │   ├── Home.jsx          # Landing screen for onboarding and room joining
-│   │   └── Dashboard.jsx     # Active workspace coordinator & storage event listener
+│   │   ├── Dashboard.jsx
+│   │   └── Home.jsx
 │   ├── utils/
-│   │   ├── roomUtils.js      # Unique code generator and avatar initials helpers
-│   │   └── storageUtils.js   # LocalStorage CRUD wrappers for rooms and sessions
-│   ├── App.jsx               # Root router, dark mode manager, and session restorer
-│   ├── main.jsx              # DOM react mount bootstrap
-│   └── index.css             # Tailwind imports & custom print styles
-├── index.html                # Entry HTML page
-├── tailwind.config.js        # Tailwind utilities scan rules
-├── postcss.config.js         # PostCSS plugins pipeline
-├── vite.config.js            # Vite build parameters
-└── package.json              # Project dependencies and running scripts
+│   │   ├── api.js
+│   │   ├── backendStorageUtils.js
+│   │   └── roomUtils.js
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   └── vite-env.d.ts
+├── index.html
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+└── vite.config.js
 ```
 
 ---
 
 Installation and Running
 
-Follow these steps to run the application locally on your machine:
+This project contains both frontend and backend components.
 
-1. **Navigate to the Project Directory**:
-   ```bash
-   cd C:/Users/Home/.gemini/antigravity/scratch/cartshare
-   ```
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Start the Local Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open your browser and navigate to the printed URL (usually `http://localhost:5173`).
-4. **Compile for Production Build**:
-   ```bash
-   npm run build
-   ```
+### 1. Install frontend dependencies
+
+```bash
+cd c:/Users/abdul/Downloads/ayesha_project/B55_AyeshaTabasum_CartShare
+npm install
+```
+
+### 2. Install backend dependencies
+
+```bash
+cd server
+npm install
+```
+
+### 3. Start the backend server
+
+```bash
+npm start
+```
+
+The backend runs on `http://localhost:4000` by default.
+
+### 4. Start the frontend app
+
+In another terminal:
+
+```bash
+cd c:/Users/abdul/Downloads/ayesha_project/B55_AyeshaTabasum_CartShare
+npm run dev
+```
+
+Open the printed Vite URL (usually `http://localhost:5173`).
+
+### 5. Production build
+
+```bash
+npm run build
+```
 
 ---
 
+## ⚙️ Backend Behavior
+
+- The backend exposes a minimal REST API at `/api/rooms`.
+- Room state is persisted in `server/db.json`.
+- Available endpoints:
+  - `POST /api/rooms` to create a room
+  - `GET /api/rooms/:roomCode` to fetch room data
+  - `PUT /api/rooms/:roomCode` to update room data
+  - `DELETE /api/rooms/:roomCode` to delete a room
+
+---
+
+## 🧠 How the App Works
 How It Works (Technical Explanations)
 
-### 1. Room Code Generation
-The unique room code is generated using basic JavaScript random math:
-- It creates a random 6-character uppercase string using capital alphanumeric characters (`A-Z` and `0-9`).
-- Refer to [roomUtils.js](src/utils/roomUtils.js) for code details.
+### Room persistence
+- `src/utils/backendStorageUtils.js` now communicates with the backend API.
+- The frontend still stores user session information in `localStorage`.
 
-### 2. localStorage Implementation
-Data is serialized into JSON strings and stored in the browser's persistent key-value storage:
-- **Room Key**: `cartshare_room_<ROOM_CODE>` contains the list of items, logs, and participants.
-- **Session Key**: `cartshare_user_session` stores the current user's name and room code so that the session persists after page reloads.
-- Refer to [storageUtils.js](src/utils/storageUtils.js) for CRUD functions.
+### Room creation
+- Creating a room sends a backend request to save the initial room structure.
+- After creation, the session is saved locally and the user is redirected to the room.
 
-### 3. Collaboration Simulation (Storage Events)
-To simulate real-time synchronization across different browser windows/tabs without a backend database:
-- The app binds a `window.addEventListener('storage', callback)` inside [Dashboard.jsx](src/pages/Dashboard.jsx).
-- The `storage` event triggers automatically in all other tabs of the same browser when `localStorage.setItem()` is executed.
-- When an update event is received, the app parses the new data, checks if the key matches the active room code, and calls the state-setter to trigger a UI re-render.
+### Joining a room
+- The app validates room existence through the backend before joining.
+- If the room exists, the user is allowed into the dashboard.
 
-### 4. Receipt Isolation for Printing
-The receipt is formatted into a clean receipt card:
-- The receipt container utilizes the ID `#print-area`.
-- In [index.css](src/index.css), a custom `@media print` query specifies that all elements except `#print-area` are hidden (`visibility: hidden`).
-- When a user clicks **Print Receipt**, `window.print()` triggers the browser's PDF print output, printing only the invoice paper sheet.
+### Dashboard updates
+- Cart updates and activity log entries are saved through backend PUT requests.
+- This keeps room state persistent across browser sessions.
 
 ---
 
+## 🎯 Notes
 Viva Q&A (Project Defence Prep)
 
-**Q1: How does the application support real-time sync without a backend database?**  
-**A:** We use the HTML5 `storage` event. When a tab modifies a value in `localStorage`, all other tabs/windows on the same browser receive a `storage` event. We filter this event by the active room key, read the new serialized JSON value, and update the React state.
+- This backend is intentionally minimal and file-based for easy local demo use.
+- It is suitable for local testing and demo purposes, not production.
+- For production, replace `server/db.json` with a proper database such as PostgreSQL or MongoDB.
 
-**Q2: What happens if a user reloads the page? Does their cart disappear?**  
-**A:** No. We save the user session (`username` and `roomCode`) in `localStorage` under `cartshare_user_session`. On mount, `App.jsx` checks for this session. If found, it fetches the room data from `localStorage` and routes the user back to the Dashboard.
+---
 
-**Q3: How did you implement room sharing via URL?**  
-**A:** We bind our state router to `window.location.hash` (e.g., `#/room/ABCDEF`). When the URL hash changes, `App.jsx` parses it. If it contains a room code, it presets it on the `Home.jsx` screen, prompting the user to only enter their name to jump right in.
+## 💡 Useful Commands
 
-**Q4: How does dark mode persist across reloads?**  
-**A:** Toggling dark mode appends/removes the `.dark` class on the root `<html>` element. The preference is stored as `'light'` or `'dark'` under `cartshare_theme` in `localStorage`. When the app loads, it queries this key and applies the correct layout styles.
+```bash
+# frontend
+npm run dev
+npm run build
+
+# backend
+cd server
+npm start
+```

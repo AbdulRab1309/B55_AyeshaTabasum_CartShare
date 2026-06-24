@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, LogIn, PlusCircle, ArrowRight } from 'lucide-react';
-import { getRoom } from '../utils/storageUtils';
+import { getRoom } from '../utils/backendStorageUtils';
 
 /**
  * Home component serving as the landing screen.
@@ -46,9 +46,10 @@ export default function Home({ onJoinRoom, onCreateRoom, presetRoomCode = '' }) 
       return;
     }
 
-    // Validate room exists in local storage
-    const room = getRoom(cleanRoomCode);
-    if (!room) {
+    // Validate room exists on the backend
+    try {
+      await getRoom(cleanRoomCode);
+    } catch (err) {
       setError('Room not found! Double-check the room code or create a new room.');
       return;
     }

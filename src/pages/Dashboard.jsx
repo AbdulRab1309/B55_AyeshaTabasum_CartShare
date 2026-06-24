@@ -4,7 +4,7 @@ import Participants from '../components/Participants';
 import Cart from '../components/Cart';
 import ActivityLog from '../components/ActivityLog';
 import Receipt from '../components/Receipt';
-import { getRoom, saveRoom, addLogEntry } from '../utils/storageUtils';
+import { getRoom, saveRoom, addLogEntry } from '../utils/backendStorageUtils';
 
 /**
  * Dashboard page coordinating child components: Cart, Participants,
@@ -19,8 +19,8 @@ export default function Dashboard({ username, roomCode, onLeaveRoom, isDarkMode,
   useEffect(() => {
     if (!roomCode || !username) return;
 
-    const syncRoomData = () => {
-      const room = getRoom(roomCode);
+    const syncRoomData = async () => {
+      const room = await getRoom(roomCode);
       if (room) {
         // Double check if participant is in the list
         const userExists = room.participants.some(p => p.name.toLowerCase() === username.toLowerCase());
@@ -36,10 +36,10 @@ export default function Dashboard({ username, roomCode, onLeaveRoom, isDarkMode,
             ...room,
             participants: [...room.participants, newParticipant]
           };
-          saveRoom(roomCode, updatedRoom);
+          await saveRoom(roomCode, updatedRoom);
           
           // Log joining event
-          const loggedRoom = addLogEntry(roomCode, username, 'joined', 'the room');
+          const loggedRoom = await addLogEntry(roomCode, username, 'joined', 'the room');
           setRoomData(loggedRoom || updatedRoom);
           return;
         }
@@ -76,9 +76,9 @@ export default function Dashboard({ username, roomCode, onLeaveRoom, isDarkMode,
   }
 
   // State update wrapper to automate saving and logging
-  const triggerStateUpdate = (updatedRoom, action, itemName) => {
-    saveRoom(roomCode, updatedRoom);
-    const finalRoom = addLogEntry(roomCode, username, action, itemName);
+  const triggerStateUpdate = async (updatedRoom, action, itemName) => {
+    await saveRoom(roomCode, updatedRoom);
+    const finalRoom = await addLogEntry(roomCode, username, action, itemName);
     setRoomData(finalRoom || updatedRoom);
   };
 
@@ -132,20 +132,20 @@ export default function Dashboard({ username, roomCode, onLeaveRoom, isDarkMode,
     triggerStateUpdate(updatedRoom, actionLabel, updatedDetails.name);
   };
 
-  const handleDeleteItem = (itemId) => {
-    const targetItem = roomData.items.find(i => i.id === itemId);
-    if (!targetItem) return;
+const handleDeleteItem = async (itemId) => {
+      const targetItem = roomData.items.find(i => i.id === itemId);
+      if (!targetItem) return;
 
-    const updatedItems = roomData.items.filter(item => item.id !== itemId);
-    const updatedRoom = {
-      ...roomData,
-      items: updatedItems
-    };
+      const updatedItems = roomData.items.filter(item => item.id !== itemId);
+      const updatedRoom = {
+        ...roomData,
+        items: updatedItems
+      };
 
-    triggerStateUpdate(updatedRoom, 'removed', targetItem.name);
+      await triggerStateUpdate(updatedRoom, 'removed', targetItem.name);
   };
 
-  const handleClearCart = () => {
+  const handleClearCart = async () => {
     if (roomData.items.length === 0) return;
     
     const updatedRoom = {
@@ -153,7 +153,7 @@ export default function Dashboard({ username, roomCode, onLeaveRoom, isDarkMode,
       items: []
     };
 
-    triggerStateUpdate(updatedRoom, 'cleared', 'the cart');
+    await triggerStateUpdate(updatedRoom, 'cleared', 'the cart');
   };
 
   return (
