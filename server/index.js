@@ -5,7 +5,7 @@ import path from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const dbPath = path.resolve('./server/db.json');
+const dbPath = new URL('./db.json', import.meta.url);
 
 app.use(cors());
 app.use(express.json());
